@@ -71,7 +71,7 @@ Configure the PostgreSQL database settings in the **application.properties** fil
 We welcome contributions to enhance the functionality and performance of the Blog Application. Please fork the repository and create a pull request with your changes.
 
 ## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](https://github/Ajinvarughese/blog-app/license) file for details.
+This project is licensed under the MIT License - see the [LICENSE][(https://github/Ajinvarughese/blog-app/license)](https://github.com/Ajinvarughese/blog-app/blob/main/LICENSE) file for details.
 
 ## 📬 Contact
 For any inquiries or feedback, please contact ajinvarughese91@gmail.com.
