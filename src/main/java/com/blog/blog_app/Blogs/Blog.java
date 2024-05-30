@@ -2,6 +2,9 @@ package com.blog.blog_app.Blogs;
 
 import jakarta.persistence.*;
 
+import javax.xml.stream.events.Comment;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -9,18 +12,22 @@ import java.util.UUID;
 public class Blog {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID blog_id;
-    private String user_id;
     private String email;
     @Column(columnDefinition = "TEXT")
     private String blog;
+    @Column(columnDefinition = "TEXT")
+    private String description;
+    @ElementCollection
+    private List<BlogComment> comments = new ArrayList<>();
     private String dateTime;
 
-    public Blog(String user_id, String email, String blog, String dateTime) {
-        this.user_id = user_id;
+    public Blog(String email, String blog, String description, List<BlogComment> comments, String dateTime) {
         this.email = email;
         this.blog = blog;
+        this.description = description;
+        this.comments = comments;
         this.dateTime = dateTime;
     }
     public Blog(){}
@@ -31,14 +38,6 @@ public class Blog {
 
     public void setBlog_id(UUID blog_id) {
         this.blog_id = blog_id;
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
     }
 
     public String getEmail() {
@@ -57,6 +56,21 @@ public class Blog {
         this.blog = blog;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<BlogComment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<BlogComment> comments) {
+        this.comments = comments;
+    }
     public String getDateTime() {
         return dateTime;
     }
