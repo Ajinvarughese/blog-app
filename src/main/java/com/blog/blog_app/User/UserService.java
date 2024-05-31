@@ -21,8 +21,8 @@ public class UserService {
                 user.getEmail(),
                 user.getPassword(),
                 user.getDob(),
-                user.getProfile_image(),
-                user.getReg_date());
+                user.getProfileImage(),
+                user.getRegDateTime());
         if (repository.findUserByEmail(newUser.getEmail()).isPresent()) {
             throw new IllegalStateException("User already exists");
         } else {

@@ -1,43 +1,42 @@
 package com.blog.blog_app.Blogs;
 
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.xml.stream.events.Comment;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name="blogs")
+@Table(name = "blogs")
 public class Blog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID blog_id;
+    private UUID blogId;
     private String email;
     @Column(columnDefinition = "TEXT")
     private String blog;
     @Column(columnDefinition = "TEXT")
     private String description;
-    @ElementCollection
-    private List<BlogComment> comments = new ArrayList<>();
     private String dateTime;
 
-    public Blog(String email, String blog, String description, List<BlogComment> comments, String dateTime) {
+    @Autowired
+    public Blog(String email, String blog, String description, String dateTime) {
         this.email = email;
         this.blog = blog;
         this.description = description;
-        this.comments = comments;
         this.dateTime = dateTime;
     }
-    public Blog(){}
 
-    public UUID getBlog_id() {
-        return blog_id;
+    public Blog() {}
+
+    public UUID getBlogId() {
+        return blogId;
     }
 
-    public void setBlog_id(UUID blog_id) {
-        this.blog_id = blog_id;
+    public void setBlogId(UUID blogId) {
+        this.blogId = blogId;
     }
 
     public String getEmail() {
@@ -64,13 +63,6 @@ public class Blog {
         this.description = description;
     }
 
-    public List<BlogComment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<BlogComment> comments) {
-        this.comments = comments;
-    }
     public String getDateTime() {
         return dateTime;
     }

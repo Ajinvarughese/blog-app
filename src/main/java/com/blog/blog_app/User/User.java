@@ -10,33 +10,33 @@ import java.util.UUID;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID user_id;
+    private UUID userId;
     private String username;
     @Column(nullable = false)
     private String email;
     private String password;
     private String dob;
-    private byte[] profile_image;
-    private String reg_date;
+    private byte[] profileImage;
+    private String regDateTime;
 
     public User(){}
 
-    public User(String username, String email, String password, String dob, byte[] profile_image, String reg_date) {
+    public User(String username, String email, String password, String dob, byte[] profileImage, String regDateTime) {
         this.username = username;
         this.email = email;
         this.password = new BCryptPasswordEncoder().encode(password);
         this.dob = dob;
-        this.profile_image = profile_image;
-        this.reg_date = reg_date;
+        this.profileImage = profileImage;
+        this.regDateTime = regDateTime;
     }
 
 
-    public UUID getUser_id() {
-        return user_id;
+    public UUID getUserId() {
+        return userId;
     }
 
-    public void setUser_id(UUID user_id) {
-        this.user_id = user_id;
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -71,19 +71,19 @@ public class User {
         this.dob = dob;
     }
 
-    public byte[] getProfile_image() {
-        return profile_image;
+    public byte[] getProfileImage() {
+        return profileImage;
     }
 
-    public void setProfile_image(byte[] profile_image) {
-        this.profile_image = profile_image;
+    public void setProfileImage(byte[] profileImage) {
+        this.profileImage = profileImage;
     }
 
-    public String getReg_date() {
-        return reg_date;
+    public String getRegDateTime() {
+        return regDateTime;
     }
 
-    public void setReg_date(String reg_date) {
-        this.reg_date = reg_date;
+    public void setRegDateTime(String regDateTime) {
+        this.regDateTime = regDateTime;
     }
 }

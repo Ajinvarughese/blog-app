@@ -1,31 +1,44 @@
-package com.blog.blog_app.Blogs;
+package com.blog.blog_app.Comments;
 
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
-@Embeddable
+@Entity
 public class BlogComment {
-    private UUID blog_id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID commentId;
+    private UUID blogId;
     private String commenterEmail;
     private String comment;
     private int likes;
     private String dateTime;
 
-    public BlogComment(UUID blog_id, String commenterEmail, String comment, int likes, String dateTime) {
-        this.blog_id = blog_id;
+    public BlogComment(UUID blogId, String commenterEmail, String comment, int likes, String dateTime) {
+        this.blogId = blogId;
+        this.commentId = UUID.randomUUID();
         this.commenterEmail = commenterEmail;
         this.comment = comment;
         this.likes = likes;
         this.dateTime = dateTime;
     }
 
-    public UUID getBlog_id() {
-        return blog_id;
+    public UUID getBlogId() {
+        return blogId;
     }
 
-    public void setBlog_id(UUID blog_id) {
-        this.blog_id = blog_id;
+    public void setBlogId(UUID blogId) {
+        this.blogId = blogId;
+    }
+
+    public UUID getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(UUID commentId) {
+        this.commentId = commentId;
     }
 
     public BlogComment() {}

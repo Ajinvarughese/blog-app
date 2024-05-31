@@ -1,5 +1,7 @@
 package com.blog.blog_app.Blogs;
 
+import com.blog.blog_app.Comments.BlogComment;
+import com.blog.blog_app.Comments.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +13,7 @@ import java.util.UUID;
 @RequestMapping("blogger/api/blog")
 public class BlogController {
     private final BlogService service;
+
     @Autowired
     public BlogController(BlogService service) {
         this.service = service;
@@ -19,10 +22,6 @@ public class BlogController {
     @PostMapping("/new_blog")
     public void addNewBlog(@RequestBody Blog blog) {
         service.addNewBlog(blog);
-    }
-    @PostMapping("/add_comment")
-    public void updateComment(@RequestBody BlogComment comment) {
-        service.updateComment(comment);
     }
 
     @GetMapping("/show_everything")
@@ -35,8 +34,8 @@ public class BlogController {
         return service.showBlog();
     }
 
-    @GetMapping("/user_blog/{blog_id}")
-    public Optional<Blog> showMyBlog(@PathVariable UUID blog_id) {
-        return service.showMyBlog(blog_id);
+    @GetMapping("/user_blog/{blogId}")
+    public Optional<Blog> showMyBlog(@PathVariable UUID blogId) {
+        return service.showMyBlog(blogId);
     }
 }

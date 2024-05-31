@@ -1,10 +1,10 @@
 package com.blog.blog_app.Blogs;
 
+import com.blog.blog_app.Comments.BlogComment;
 import com.blog.blog_app.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,10 +15,13 @@ public class BlogService {
     private final BlogRepository repository;
     private final UserRepository userRepository;
 
+//    private final BlogCommentsRepo commentsRepo;
+
     @Autowired
-    public BlogService(BlogRepository repository, UserRepository userRepository) {
+    public BlogService(BlogRepository repository, UserRepository  userRepository) {
         this.repository = repository;
         this.userRepository = userRepository;
+
     }
 
     public void addNewBlog(Blog blog) {
@@ -26,7 +29,6 @@ public class BlogService {
                 blog.getEmail(),
                 blog.getBlog(),
                 blog.getDescription(),
-                blog.getComments(),
                 blog.getDateTime()
         );
         if(userRepository.findUserByEmail(newBlog.getEmail()).isPresent()) {
@@ -61,35 +63,8 @@ public class BlogService {
         }
     }
 
-
-    public void updateComment(BlogComment newComment) {
-        BlogComment comments1 = new BlogComment(newComment.getBlog_id(), newComment.getCommenterEmail(), newComment.getComment(), newComment.getLikes(), newComment.getDateTime());
-        // Fetch the blog entity by ID
-        Optional<Blog> blogOpt = repository.findById(comments1.getBlog_id());
-
-        if (blogOpt.isPresent()) {
-            Blog blog = blogOpt.get();
-
-            // Retrieve the existing comments, initialize if null or empty
-            List<BlogComment> comments = blog.getComments();
-            if (comments == null) {
-                comments = new ArrayList<>();
-            }
-
-            // Add the new comment to the list of existing comments
-            comments.add(comments1);
-
-            // Set the updated list of comments
-            blog.setComments(comments);
-
-            // Save the updated blog entity
-            repository.save(blog);
-        }else {
-            throw new IllegalStateException("Blog does not found");
-        }
-    }
-
     public List<Blog> showEverything() {
         return repository.findAll();
     }
+
 }
