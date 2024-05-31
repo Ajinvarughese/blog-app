@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -25,5 +26,10 @@ public class UserController {
     @PostMapping("/signup")
     public void regNewUser(@RequestBody User user) {
         service.regNewUser(user);
+    }
+
+    @PostMapping("/login")
+    public User loginUser(@RequestBody LoginRequest login) {
+        return service.login(login.getEmail(), login.getPassword());
     }
 }

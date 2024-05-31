@@ -1,8 +1,11 @@
 package com.blog.blog_app.User;
 
 import jakarta.persistence.*;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -24,10 +27,10 @@ public class User {
     public User(String username, String email, String password, String dob, byte[] profileImage, String regDateTime) {
         this.username = username;
         this.email = email;
-        this.password = new BCryptPasswordEncoder().encode(password);
+        this.password = password;
         this.dob = dob;
         this.profileImage = profileImage;
-        this.regDateTime = regDateTime;
+        this.regDateTime = new Date().toString();
     }
 
 
@@ -60,7 +63,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = new BCryptPasswordEncoder().encode(password);
+        this.password = password;
     }
 
     public String getDob() {
