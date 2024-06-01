@@ -48,9 +48,15 @@ Through continuous innovation and user feedback, the Blog Application seeks to e
 ### Installation
 
 1. **Clone the repository**
-   ```bash
+   ```java
    git clone https://github.com/Ajinvarughese/blog-app.git
    cd blog-app
+
+   public class Main {
+     public static void main(String[] args) {
+       System.out.println("Hello World");
+     }
+   }
 2. **Backend Setup**
 
     Navigate to the backend directory and run the application:
