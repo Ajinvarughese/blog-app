@@ -48,7 +48,7 @@ Through continuous innovation and user feedback, the Blog Application seeks to e
 ### Installation
 
 1. **Clone the repository**
-   ```java
+   ```bash
    git clone https://github.com/Ajinvarughese/blog-app.git
    cd blog-app
 
